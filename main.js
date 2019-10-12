@@ -1,9 +1,9 @@
 const dotenv = require('dotenv').config()
-const dropboxToJson = require('./dropboxToJson');
-const downloadShopifyProducts = require('./downloadShopifyProducts');
-const checkWhatIsInStore = require('./sortProducts');
-const updateStock = require('./updateStock');
-const sendPushMessage = require('./sendPushMessage');
+const dropboxToJson = require('./components/dropboxToJson');
+const downloadShopifyProducts = require('./components/downloadShopifyProducts');
+const checkWhatIsInStore = require('./components/sortProducts');
+const updateStock = require('./components/updateStock');
+const sendPushMessage = require('./components/sendPushMessage');
 
 const main = async () => {
   try{
