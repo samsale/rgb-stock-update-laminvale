@@ -7,7 +7,9 @@ var dbx = new Dropbox({ accessToken: process.env.DROPBOX_ACCESS_TOKEN,
                         fetch});
 
 const downloadSpreadSheet = async () => {
-  return dbx.filesDownload({path: '/stock updates/daily stock laminvale.xlsx'})
+  const listOfFiles = await dbx.filesListFolder({path: '/stock updates'})
+  const path = listOfFiles.entries[0].path_lower
+  return dbx.filesDownload({path: path})
 }
 
 const parseSpreadSheetToJson = async (spreadSheet) => {
@@ -24,5 +26,6 @@ let stockArray = await parseSpreadSheetToJson(xlsxFile)
 console.log(`${stockArray.length} products in Dropbox csv`);
 return stockArray
 }
+
 
 module.exports = {main}
