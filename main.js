@@ -5,7 +5,7 @@ const checkWhatIsInStore = require('./components/sortProducts');
 const updateStock = require('./components/updateStock');
 const sendPushMessage = require('./components/sendPushMessage');
 
-const main = async () => {
+const index = async () => {
   try{
   let stockUpdateArray = await dropboxToJson.main()
   let productsArray = await downloadShopifyProducts.downloadShopifyData()
@@ -19,4 +19,4 @@ const main = async () => {
   }
 }
 
-main()
+exports.handler = index;

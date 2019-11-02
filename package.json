@@ -9,6 +9,7 @@
     "https": "^1.0.0",
     "node-fetch": "^2.6.0",
     "node-pushover": "^0.2.2",
+    "request": "^2.88.0",
     "shopify-api-node": "^2.23.1",
     "xlsx": "^0.15.1"
   },
