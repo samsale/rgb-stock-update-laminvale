@@ -7,11 +7,11 @@ const sendPushMessage = require('./components/sendPushMessage');
 
 const index = async () => {
   try{
-  let stockUpdateArray = await dropboxToJson.main()
-  let productsArray = await downloadShopifyProducts.downloadShopifyData()
-  let shopifyUpdateArray = await checkWhatIsInStore.checkWhatIsInStore(stockUpdateArray, productsArray)
-  await updateStock.updateShopify(shopifyUpdateArray)
-  await sendPushMessage.sendPushMessage()
+    let stockUpdateArray = await dropboxToJson.main()
+    let productsArray = await downloadShopifyProducts.downloadShopifyData()
+    let shopifyUpdateArray = await checkWhatIsInStore.checkWhatIsInStore(stockUpdateArray, productsArray)
+    await updateStock.updateShopify(shopifyUpdateArray)
+    await sendPushMessage.sendPushMessage()
   }
   catch(err){
      sendPushMessage.sendPushMessage(err.name)
