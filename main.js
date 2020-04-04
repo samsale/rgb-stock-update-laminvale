@@ -9,19 +9,18 @@ const sendPushMessage = require('./components/sendPushMessage');
 
 const index = async () => {
   try{
-    let stockUpdateArray = await dropboxToJson.main()
-    let productsArray = await downloadShopifyProducts.downloadShopifyData()
-    let productsNotInCsvArray = await checkWhatIsInStoreButNoInCSV.checkWhatIsInStoreButNoInCSV(stockUpdateArray, productsArray)
-    await updateProductThatIsNotInCsv.updateProductThatIsNotInCsv(productsNotInCsvArray)
-    let shopifyUpdateArray = await checkWhatIsInStore.checkWhatIsInStore(stockUpdateArray, productsArray)
-    await updateStock.updateShopify(shopifyUpdateArray)
-    await sendPushMessage.sendPushMessage()
+    let stockUpdateArray = await dropboxToJson()
+    let productsArray = await downloadShopifyProducts()
+    let productsNotInCsvArray = await checkWhatIsInStoreButNoInCSV(stockUpdateArray, productsArray)
+    await updateProductThatIsNotInCsv(productsNotInCsvArray)
+    let shopifyUpdateArray = await checkWhatIsInStore(stockUpdateArray, productsArray)
+    await updateStock(shopifyUpdateArray)
+    await sendPushMessage()
   }
   catch(err){
-     sendPushMessage.sendPushMessage(err.name)
+     sendPushMessage(err.name)
      console.log(err);
   }
 }
 
-index()
-// exports.handler = index;
+exports.handler = index;

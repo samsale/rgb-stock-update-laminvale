@@ -20,12 +20,9 @@ const parseSpreadSheetToJson = async (spreadSheet) => {
         return stockArray
 }
 
-const main = async () => {
+module.exports = async () => {
   let xlsxFile = await downloadSpreadSheet()
   let stockArray = await parseSpreadSheetToJson(xlsxFile)
   console.log(`${stockArray.length} products in Dropbox csv`);
   return stockArray
 }
-
-
-module.exports = {main}

@@ -2,7 +2,7 @@ function compareSkus(array, newSku) {
   return array.find(object => object.sku === newSku);
 }
 
-const checkWhatIsInStore = async (stockUpdateArray, inStoreArray) =>{
+module.exports =  async (stockUpdateArray, inStoreArray) =>{
   let notInStoreArray = []
   let alreadyInStoreArray = []
   for(let value of stockUpdateArray){
@@ -17,5 +17,3 @@ const checkWhatIsInStore = async (stockUpdateArray, inStoreArray) =>{
   console.log(`${alreadyInStoreArray.length} products to update`);
   return alreadyInStoreArray
 }
-
-module.exports = {checkWhatIsInStore}

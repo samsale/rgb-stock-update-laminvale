@@ -1,17 +1,26 @@
-const Pushover = require('node-pushover');
+var Push = require( 'pushover-notifications' )
 
-const push = new Pushover({
-	token: process.env.PUSH_TOKEN,
-	user: process.env.PUSH_USER,
-});
+var p = new Push( {
+  user: process.env.PUSH_USER,
+  token: process.env.PUSH_TOKEN,
+  // httpOptions: {
+  //   proxy: process.env['http_proxy'],
+  //},
+  // onerror: function(error) {},
+  // update_sounds: true // update the list of sounds every day - will
+  // prevent app from exiting.
+})
 
-const sendPushMessage = (errorCode) => {
+module.exports = (errorCode) => {
 	if (errorCode) {
-		push.send("Laminvale Stock Update Error", errorCode);
-	} else {
-		push.send("Laminvale Stock Update", "Successful");
-
+		var msg = {message: `Laminvale Stock Update Error - ${errorCode}`}
+	}else {
+		var msg = {message: `Laminvale Stock Updated`}
 	}
+	p.send(msg, (err, result) => {
+		if ( err ) {
+    throw err
+	}
+  console.log( result )
+	})
 }
-
-module.exports = {sendPushMessage}

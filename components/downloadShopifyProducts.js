@@ -66,12 +66,10 @@ function getAPIData(optionsObj){
     })
 }
 
-async function downloadShopifyData(){
+module.exports = async function() {
   let numberOfPages = await getNumberOfPrducts()
   let arrayOfOptions = await createApiCallForInstoreProducts(numberOfPages)
   let products = await getVariantsSkus(arrayOfOptions)
   console.log(`${products.length} products downloaded from store`);
   return products
 }
-
-module.exports = {downloadShopifyData}

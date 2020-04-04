@@ -10,7 +10,7 @@ const shopify = new Shopify({
 });
 
 
-const updateProductThatIsNotInCsv = async (productsNotInCsvArray) => {
+module.exports = async (productsNotInCsvArray) => {
   let laminvaleVendors = ['Alba Krapf', 'Amazonas']
   let params = { fields: 'vendor,tags' }
   let emptyArray = []
@@ -28,10 +28,5 @@ const updateProductThatIsNotInCsv = async (productsNotInCsvArray) => {
       count++
     }
   }
-
-
-
   console.log(`${count} Laminvale products in store by not in csv`);
 }
-
-module.exports = {updateProductThatIsNotInCsv}

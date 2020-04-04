@@ -10,7 +10,7 @@ const shopify = new Shopify({
 });
 
 
-const updateShopify = async (arrayOfProducts) => {
+module.exports = async (arrayOfProducts) => {
   let count = 0
   for(let product of arrayOfProducts){
     let response = await shopify.inventoryLevel.set({"inventory_item_id": product['inventory_item_id'],
@@ -20,5 +20,3 @@ const updateShopify = async (arrayOfProducts) => {
   }
   console.log(`${count} products updated in store`);
 }
-
-module.exports = {updateShopify}
