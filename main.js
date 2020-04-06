@@ -14,11 +14,11 @@ const index = async () => {
     let productsNotInCsvArray = await checkWhatIsInStoreButNoInCSV(stockUpdateArray, productsArray)
     await updateProductThatIsNotInCsv(productsNotInCsvArray)
     let shopifyUpdateArray = await checkWhatIsInStore(stockUpdateArray, productsArray)
-    await updateStock(shopifyUpdateArray)
-    await sendPushMessage()
+    let numberOfProductsUpdated = await updateStock(shopifyUpdateArray)
+    await sendPushMessage(`${numberOfProductsUpdated} products updated`,  -2)
   }
   catch(err){
-     sendPushMessage(err.name)
+     await sendPushMessage(`Error (${err.source})`, 1)
      console.log(err);
   }
 }

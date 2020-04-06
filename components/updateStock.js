@@ -19,4 +19,6 @@ module.exports = async (arrayOfProducts) => {
     count++
   }
   console.log(`${count} products updated in store`);
+
+  return count
 }
