@@ -6,10 +6,10 @@ module.exports =  async (stockUpdateArray, inStoreArray) =>{
   let notInStoreArray = []
   let alreadyInStoreArray = []
   for(let value of stockUpdateArray){
-    if(compareSkus(inStoreArray, value['Stock Code']) === undefined){
+    if(compareSkus(inStoreArray, value['sku']) === undefined){
       notInStoreArray.push(value)
     }else{
-      let objWithProductId = inStoreArray.find(obj => obj.sku === value['Stock Code']);
+      let objWithProductId = inStoreArray.find(obj => obj.sku === value['sku']);
       value["inventory_item_id"] = objWithProductId.inventory_item_id
       alreadyInStoreArray.push(value)
     }

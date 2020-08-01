@@ -1,5 +1,5 @@
 const dotenv = require('dotenv').config()
-const dropboxToJson = require('./components/dropboxToJson');
+const googleDriveToJson = require('./components/googleDriveToJson');
 const downloadShopifyProducts = require('./components/downloadShopifyProducts');
 const checkWhatIsInStore = require('./components/sortProducts');
 const updateStock = require('./components/updateStock');
@@ -9,7 +9,7 @@ const sendPushMessage = require('./components/sendPushMessage');
 
 const index = async () => {
   try{
-    let stockUpdateArray = await dropboxToJson()
+    let stockUpdateArray = await googleDriveToJson()
     let productsArray = await downloadShopifyProducts()
     let productsNotInCsvArray = await checkWhatIsInStoreButNoInCSV(stockUpdateArray, productsArray)
     await updateProductThatIsNotInCsv(productsNotInCsvArray)
